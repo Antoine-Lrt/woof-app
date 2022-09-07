@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {COLORS, FONTSIZE, FONTWEIGHT} from './src/constants/GLOBAL'
-import CustomButton from './src/components/CustomButton/CustomButton';
-import CustomTextFiled from './src/components/CustomTextFiled/CustomTextFiled'
+import {useFonts} from 'expo-font'
+
+import CreateAccount from './src/screens/CreateAccount/CreateAccount'
+import Login from './src/screens/Login/Login'
+
 
 interface style {
   fontSize: number
@@ -10,10 +13,10 @@ interface style {
 }
 export default function App() {
 
-  const buttonPressed = () => {
-    console.log("button pressed");
-    
-  }
+  const [fontLoader] = useFonts({
+    'SF-PRO': require('./assets/fonts/SF-Pro-Display-Regular.otf'),
+    'Wicked-Mouse': require('./assets/fonts/Wicked-Mouse-Demo.otf')
+  })
 
   return (
     <View style={styles.container}>
@@ -28,7 +31,11 @@ export default function App() {
       <CustomButton size='SMALL' type='DISABLED' onPress={buttonPressed} text='Default' />
       <CustomButton size='SMALL' type='TEXT_BUTTON_PRIMARY' onPress={buttonPressed} text='Default' />
       <CustomButton size='SMALL' type='TEXT_BUTTON_SECONDARY' onPress={buttonPressed} text='Default' /> */}
-      <CustomTextFiled />
+
+      <Login />
+      {/* <CreateAccount/> */}
+
+
     </View>
   );
 }
@@ -39,5 +46,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND_COLORS_FIRST,
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
 });

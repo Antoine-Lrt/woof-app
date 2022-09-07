@@ -1,25 +1,25 @@
-import {StyleSheet ,TouchableOpacity, View, Text } from 'react-native'
+import {StyleSheet ,TouchableOpacity, SafeAreaView, Text } from 'react-native'
 import React, { FunctionComponent } from 'react'
-import {COLORS, FONTSIZE, FONTWEIGHT, SIZE} from '../../constants/GLOBAL'
+import {COLORS, FONTFAMILY, FONTSIZE, FONTWEIGHT, SIZE} from '../../constants/GLOBAL'
  
 interface CustomButtonProps {
     text: string;
     type: "ACTIVE_PRIMARY" | "ACTIVE_SECONDARY" | "DISABLED" | "TEXT_BUTTON_PRIMARY" | "TEXT_BUTTON_SECONDARY"  ;
-    onPress: () => void
+    onPress?: () => void
     size?: "LARGE" | "SMALL"
 
 }
- 
+
 const CustomButton: FunctionComponent<CustomButtonProps> = ({
     text,
     onPress,
     type,
     size = 'LARGE'
-,
+    ,
 }) => {
-   
+    
 return (
-    <View>
+    <SafeAreaView>
         <TouchableOpacity 
             onPress={onPress}
             style={[
@@ -33,7 +33,7 @@ return (
                 styles[`customButton_text_${type}`]
             ]}> {text} </Text>
         </TouchableOpacity>  
-    </View>
+    </SafeAreaView>
  )
 }
 export default CustomButton
@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
-        height:SIZE.HEIGHT
+        height:SIZE.HEIGHT,
+        marginTop: 5,
+        marginBottom: 5,
     },
     customButton_LARGE: {
         width: SIZE.LARGE_WIDTH,
@@ -71,7 +73,8 @@ const styles = StyleSheet.create({
 
     customButton_text:{
         fontSize: FONTSIZE.H5_INPUT_TITLE,
-        fontWeight: FONTWEIGHT.H5_INPUT_TITLE
+        fontWeight: FONTWEIGHT.H5_INPUT_TITLE,
+        fontFamily: FONTFAMILY.SF_PRO
     },
     customButton_text_ACTIVE_PRIMARY:{
         color: COLORS.TEXT_COLORS_THIRD

@@ -10,7 +10,6 @@ export const COLORS = {
     SECONDARY_COLORS_THIRD: '#FFEDC9',
     WARNING_COLORS_FIRST: '#F12929',
     WARNING_COLORS_SECOND: '#D24B4B',
-    WARNING_COLORS_THIRD: '#FF0000',
     TEXT_COLORS_FIRST: '#323338',
     TEXT_COLORS_SECOND: '#F77F00',
     TEXT_COLORS_THIRD: '#FFFFFF',
@@ -44,5 +43,11 @@ export const SIZE = {
     LARGE_WIDTH: 347,
     SMALL_WIDTH: 157,
     HEIGHT: 48,
+}
+
+export const FONTFAMILY = {
+    SF_PRO: 'SF-PRO',
+    WICKED_MOUSE: 'Wicked-Mouse',
+ 
 }
 
