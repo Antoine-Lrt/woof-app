@@ -1,22 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import {COLORS, FONTSIZE, FONTWEIGHT} from './src/constants/GLOBAL'
-import {useFonts} from 'expo-font'
+import { useFonts } from 'expo-font';
+import { COLORS, FONTSIZE, FONTWEIGHT } from './src/constants/GLOBAL';
 
-import CreateAccount from './src/screens/CreateAccount/CreateAccount'
-import Login from './src/screens/Login/Login'
-
+import CreateAccount from './src/screens/CreateAccount/CreateAccount';
+import Login from './src/screens/Login/Login';
 
 interface style {
   fontSize: number
   fonttWeight: string
 }
 export default function App() {
-
   const [fontLoader] = useFonts({
     'SF-PRO': require('./assets/fonts/SF-Pro-Display-Regular.otf'),
-    'Wicked-Mouse': require('./assets/fonts/Wicked-Mouse-Demo.otf')
-  })
+    'Wicked-Mouse': require('./assets/fonts/Wicked-Mouse-Demo.otf'),
+  });
 
   return (
     <View style={styles.container}>
@@ -35,7 +33,6 @@ export default function App() {
       <Login />
       {/* <CreateAccount/> */}
 
-
     </View>
   );
 }
@@ -46,6 +43,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND_COLORS_FIRST,
     alignItems: 'center',
     justifyContent: 'center',
-    
+
   },
 });
