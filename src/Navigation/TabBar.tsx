@@ -13,18 +13,15 @@ export type TabBarsParams = {
   Chat: undefined;
 };
 
-interface TabBarProps {
-  focused: boolean;
-  iconeName: keyof typeof Ionicons.glyphMap;
-}
-
 const Tab = createBottomTabNavigator<TabBarsParams>();
 
-const TabBar = ({ iconeName }: TabBarProps) => {
+const TabBar = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
+          let iconeName: keyof typeof Ionicons.glyphMap;
+
           if (route.name === 'Home') {
             iconeName = focused ? 'ios-home' : 'ios-home-outline';
           } else if (route.name === 'ProfilStackNav') {
