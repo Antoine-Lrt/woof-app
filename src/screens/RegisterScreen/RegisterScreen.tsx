@@ -1,7 +1,6 @@
 /* eslint-disable react/function-component-definition */
-import {
-  SafeAreaView, ScrollView, StyleSheet, Text,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import React, { FunctionComponent } from 'react';
 import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
@@ -9,27 +8,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import CustomTextFiled from '../../components/CustomTextFiled/CustomTextFiled';
 import { COLORS, FONTSIZE, FONTFAMILY } from '../../constants/GLOBAL';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteParams } from '../../Navigation/RootNavigator';
 
-interface CreateAccountProps {}
-
-type FormValues = {
+type RegisterScreenProps = {
   pseudo: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
 
-const styles = StyleSheet.create({
-  textError: {
-    color: COLORS.WARNING_COLORS_FIRST,
-    fontSize: FONTSIZE.INPUT_PROMPT,
-    fontFamily: FONTFAMILY.SF_PRO,
-    marginTop: 10,
-    textAlign: 'center',
-  },
-});
-
-const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
+const RegisterScreen: FunctionComponent = () => {
+  // FORM
   const validation = Yup.object({
     pseudo: Yup.string().required('Veuillez saisir votre Pseudo'),
     email: Yup.string()
@@ -48,29 +39,36 @@ const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
     handleSubmit,
     clearErrors,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<RegisterScreenProps>({
     mode: 'onBlur',
     resolver: yupResolver(validation),
   });
 
   const onSignUp = () => {
     clearErrors();
-    console.warn('Create Account');
+    console.warn('Register');
+  };
+
+  // NAVIGATION
+  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+
+  const onGoLogin = () => {
+    clearErrors();
+    navigation.navigate('Login');
+    console.warn('Go to Login');
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.registerContainer}>
+      <StatusBar style='auto' />
       <ScrollView>
         <Controller
           control={control}
-          name="pseudo"
-          render={({
-            field: { onChange, value, onBlur },
-            fieldState: { error },
-          }) => (
+          name='pseudo'
+          render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
             <CustomTextFiled
               value={value}
-              placeholder="Pseudo"
+              placeholder='Pseudo'
               onChangeText={onChange}
               onBlur={onBlur}
               error={!!error}
@@ -80,17 +78,14 @@ const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
         />
         <Controller
           control={control}
-          name="email"
-          render={({
-            field: { onChange, value, onBlur },
-            fieldState: { error },
-          }) => (
+          name='email'
+          render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
             <CustomTextFiled
               value={value}
-              placeholder="Email"
+              placeholder='Email'
               onChangeText={onChange}
               onBlur={onBlur}
-              type="email-address"
+              type='email-address'
               error={!!error}
               errorDetails={error?.message}
             />
@@ -98,14 +93,11 @@ const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
         />
         <Controller
           control={control}
-          name="password"
-          render={({
-            field: { onChange, value, onBlur },
-            fieldState: { error },
-          }) => (
+          name='password'
+          render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
             <CustomTextFiled
               value={value}
-              placeholder="Mot de passe"
+              placeholder='Mot de passe'
               onChangeText={onChange}
               onBlur={onBlur}
               password
@@ -116,14 +108,11 @@ const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
         />
         <Controller
           control={control}
-          name="confirmPassword"
-          render={({
-            field: { onChange, value, onBlur },
-            fieldState: { error },
-          }) => (
+          name='confirmPassword'
+          render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
             <CustomTextFiled
               value={value}
-              placeholder="Confirmer le Mot de passe"
+              placeholder='Confirmer le Mot de passe'
               onChangeText={onChange}
               onBlur={onBlur}
               password
@@ -134,20 +123,38 @@ const CreateAccount: FunctionComponent<CreateAccountProps> = () => {
         />
 
         {!!errors && Object.keys(errors).length > 0 && (
-          <Text style={styles.textError}>
-            {' '}
-            Veuillez remplir tous les champs
-            {' '}
-          </Text>
+          <Text style={styles.textError}> Veuillez remplir tous les champs </Text>
         )}
         <CustomButton
-          type="ACTIVE_PRIMARY"
+          type='ACTIVE_PRIMARY'
           onPress={handleSubmit(onSignUp)}
-          text="Créer un compte"
-          size="LARGE"
+          text='Créer un compte'
+          size='LARGE'
+        />
+        <CustomButton
+          type='TEXT_BUTTON_SECONDARY'
+          onPress={onGoLogin}
+          text='Se connecter'
+          size='LARGE'
         />
       </ScrollView>
     </SafeAreaView>
   );
 };
-export default CreateAccount;
+export default RegisterScreen;
+
+const styles = StyleSheet.create({
+  registerContainer: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  textError: {
+    color: COLORS.WARNING_COLORS_FIRST,
+    fontSize: FONTSIZE.INPUT_PROMPT,
+    fontFamily: FONTFAMILY.SF_PRO,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+});

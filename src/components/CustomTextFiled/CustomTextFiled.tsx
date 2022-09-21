@@ -1,36 +1,36 @@
-import { KeyboardTypeOptions,StyleSheet, Text, SafeAreaView, TextInput, View} from 'react-native'
-import React, { FunctionComponent } from 'react'
-import {COLORS,FONTFAMILY,FONTSIZE,FONTWEIGHT,SIZE} from '../../constants/GLOBAL'
- 
+import { KeyboardTypeOptions, StyleSheet, Text, SafeAreaView, TextInput } from 'react-native';
+import React, { FunctionComponent } from 'react';
+import { COLORS, FONTFAMILY, FONTSIZE, FONTWEIGHT, SIZE } from '../../constants/GLOBAL';
+
 interface CustomTextFiledProps {
-  placeholder?: string,
-  value: string,
-  password?: boolean,
+  placeholder?: string;
+  value: string;
+  password?: boolean;
   type?: KeyboardTypeOptions;
   onChangeText: (value: string) => void;
   onBlur?: () => void;
-  error?: boolean
-  errorDetails? :string
+  error?: boolean;
+  errorDetails?: string;
 }
- 
+
 const CustomTextFiled: FunctionComponent<CustomTextFiledProps> = ({
   placeholder,
   value,
   password = false,
-  type = "default",
+  type = 'default',
   onChangeText,
   onBlur,
   error = false,
   errorDetails,
-
 }) => {
-return (
-
-  <View>
-    <TextInput 
+  return (
+    <SafeAreaView>
+      <TextInput
         style={[
           styles.customTextFiled,
-          {borderColor: `${error ? COLORS.WARNING_COLORS_FIRST : COLORS.BACKGROUND_COLORS_SECOND}`}
+          {
+            borderColor: `${error ? COLORS.WARNING_COLORS_FIRST : COLORS.BACKGROUND_COLORS_SECOND}`,
+          },
         ]}
         placeholder={placeholder}
         value={value}
@@ -38,23 +38,17 @@ return (
         onBlur={onBlur}
         secureTextEntry={password}
         keyboardType={type}
-    />
-    {!!errorDetails &&(
-      <Text style={styles.textError}>{errorDetails}</Text>
-    )}
-
-
-  </View>
-   
-    
- )
-}
-export default CustomTextFiled
+      />
+      {!!errorDetails && <Text style={styles.textError}>{errorDetails}</Text>}
+    </SafeAreaView>
+  );
+};
+export default CustomTextFiled;
 const styles = StyleSheet.create({
-  customTextFiled:{
+  customTextFiled: {
     alignItems: 'center',
     justifyContent: 'center',
-    height:SIZE.HEIGHT,
+    height: SIZE.HEIGHT,
     width: SIZE.LARGE_WIDTH,
     padding: 10,
     marginTop: 5,
@@ -63,13 +57,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 2,
     borderColor: COLORS.BACKGROUND_COLORS_SECOND,
-    fontFamily: FONTFAMILY.SF_PRO
+    fontFamily: FONTFAMILY.SF_PRO,
   },
 
   textError: {
-    color: COLORS.WARNING_COLORS_FIRST, 
+    color: COLORS.WARNING_COLORS_FIRST,
     fontSize: FONTSIZE.INPUT_PROMPT,
-    fontFamily: FONTFAMILY.SF_PRO
-     
-}
-})
+    fontFamily: FONTFAMILY.SF_PRO,
+  },
+});

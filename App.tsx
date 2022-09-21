@@ -1,14 +1,16 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
-import { COLORS, FONTSIZE, FONTWEIGHT } from './src/constants/GLOBAL';
+import { COLORS } from './src/constants/GLOBAL';
 
-import CreateAccount from './src/screens/CreateAccount/CreateAccount';
 import Login from './src/screens/Login/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './src/Navigation/RootNavigator';
 
 interface style {
-  fontSize: number
-  fonttWeight: string
+  fontSize: number;
+  fonttWeight: string;
 }
 export default function App() {
   const [fontLoader] = useFonts({
@@ -17,32 +19,11 @@ export default function App() {
   });
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      {/* <CustomButton type='ACTIVE_PRIMARY' onPress={buttonPressed} text='Default' />
-      <CustomButton type='ACTIVE_SECONDARY' onPress={buttonPressed} text='Default' />
-      <CustomButton type='DISABLED' onPress={buttonPressed} text='Default' />
-      <CustomButton type='TEXT_BUTTON_PRIMARY' onPress={buttonPressed} text='Default' />
-      <CustomButton type='TEXT_BUTTON_SECONDARY' onPress={buttonPressed} text='Default' />
-      <CustomButton size='SMALL' type='ACTIVE_PRIMARY' onPress={buttonPressed} text='Default' />
-      <CustomButton size='SMALL' type='ACTIVE_SECONDARY' onPress={buttonPressed} text='Default' />
-      <CustomButton size='SMALL' type='DISABLED' onPress={buttonPressed} text='Default' />
-      <CustomButton size='SMALL' type='TEXT_BUTTON_PRIMARY' onPress={buttonPressed} text='Default' />
-      <CustomButton size='SMALL' type='TEXT_BUTTON_SECONDARY' onPress={buttonPressed} text='Default' /> */}
-
-      <Login />
-      {/* <CreateAccount/> */}
-
-    </View>
+    <NavigationContainer>
+      <StatusBar style='auto' />
+      <RootNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.BACKGROUND_COLORS_FIRST,
-    alignItems: 'center',
-    justifyContent: 'center',
-
-  },
-});
+const styles = StyleSheet.create({});

@@ -1,33 +1,20 @@
-import {StyleSheet, SafeAreaView, Image } from 'react-native'
-import React, { FunctionComponent } from 'react'
-import {SIZE} from '../../constants/GLOBAL'
- 
-interface LogoProps {}
- 
-const Logo: FunctionComponent<LogoProps> = ({}) => {
-return (
+import { StyleSheet, Image, View } from 'react-native';
+import React, { FunctionComponent } from 'react';
+import { SPACE } from '../../constants/GLOBAL';
 
-       <Image
-            source={require('../../../assets/images/woof-logo.png')}
-            style={styles.logoImg}
-        />
- 
- )
+interface LogoValues {
+  widthSize: number;
+  heightSize: number;
 }
-export default Logo
-const styles = StyleSheet.create({
-    logoContainer:{
-        alignItems: 'center',
-        height: 300,
-        backgroundColor: 'red'
-        
 
-
-    },
-    logoImg:{
-        position: 'absolute' ,
-        bottom: 100,
-        width: 350,
-        height: 350,
-    }
-})
+const Logo: FunctionComponent<LogoValues> = ({ widthSize, heightSize }) => {
+  return (
+    // <View style={{ backgroundColor: 'red' }}>
+    <Image
+      source={require('../../../assets/images/woof-logo.png')}
+      style={{ width: widthSize, height: heightSize, resizeMode: 'center' }}
+    />
+    // </View>
+  );
+};
+export default Logo;
