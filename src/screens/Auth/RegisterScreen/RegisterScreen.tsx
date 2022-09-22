@@ -5,12 +5,12 @@ import React, { FunctionComponent } from 'react';
 import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import CustomTextFiled from '../../components/CustomTextFiled/CustomTextFiled';
-import { COLORS, FONTSIZE, FONTFAMILY } from '../../constants/GLOBAL';
+import CustomButton from '../../../components/CustomButton/CustomButton';
+import CustomTextFiled from '../../../components/CustomTextFiled/CustomTextFiled';
+import { COLORS, FONTSIZE, FONTFAMILY } from '../../../constants/GLOBAL';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RouteParams } from '../../Navigation/RootNavigator';
+import { RouteParams } from '../../../Navigation/RootNavigator';
 
 type RegisterScreenProps = {
   pseudo: string;
@@ -46,7 +46,7 @@ const RegisterScreen: FunctionComponent = () => {
 
   const onSignUp = () => {
     clearErrors();
-    console.warn('Register');
+    console.log('Register');
   };
 
   // NAVIGATION
@@ -55,7 +55,7 @@ const RegisterScreen: FunctionComponent = () => {
   const onGoLogin = () => {
     clearErrors();
     navigation.navigate('Login');
-    console.warn('Go to Login');
+    console.log('Go to Login');
   };
 
   return (

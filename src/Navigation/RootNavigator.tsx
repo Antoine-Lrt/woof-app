@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
+import LoginScreen from '../screens/Auth/LoginScreen/LoginScreen';
+import RegisterScreen from '../screens/Auth/RegisterScreen/RegisterScreen';
 import TabBar from './TabBar';
 
 export type RouteParams = {

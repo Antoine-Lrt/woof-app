@@ -1,16 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { FunctionComponent } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import HomeStackNav from './HomeStackNav';
 import ProfilStackNav from './ProfilStackNav';
+import ChatStackNav from './ChatStackNav';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/GLOBAL';
-import ChatScreen from '../screens/ChatScreen.tsx/ChatScreen';
+import ChatScreen from '../screens/Chat/ChatScreen.tsx/ChatScreen';
 
 export type TabBarsParams = {
-  Home: undefined;
+  HomeStackNav: undefined;
   ProfilStackNav: undefined;
-  Chat: undefined;
+  ChatStackNav: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabBarsParams>();
@@ -22,11 +23,11 @@ const TabBar = () => {
         tabBarIcon: ({ focused }) => {
           let iconeName: keyof typeof Ionicons.glyphMap;
 
-          if (route.name === 'Home') {
+          if (route.name === 'HomeStackNav') {
             iconeName = focused ? 'ios-home' : 'ios-home-outline';
           } else if (route.name === 'ProfilStackNav') {
             iconeName = focused ? 'paw' : 'paw-outline';
-          } else if (route.name === 'Chat') {
+          } else if (route.name === 'ChatStackNav') {
             iconeName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
           }
           return <Ionicons name={iconeName} size={25} />;
@@ -35,11 +36,11 @@ const TabBar = () => {
         tabBarShowLabel: false,
       })}
     >
-      <Tab.Screen name='Home' component={HomeScreen} />
+      <Tab.Screen name='HomeStackNav' component={HomeStackNav} />
       <Tab.Screen name='ProfilStackNav' component={ProfilStackNav} />
       <Tab.Screen
-        name='Chat'
-        component={ChatScreen}
+        name='ChatStackNav'
+        component={ChatStackNav}
         options={{
           tabBarBadge: 4,
         }}

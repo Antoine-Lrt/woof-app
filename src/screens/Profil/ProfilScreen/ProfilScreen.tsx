@@ -3,9 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { FunctionComponent } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { ProfilStackParams } from '../../Navigation/ProfilStackNav';
-import CustomProfilPicture from '../../components/CustomProfilPicture/CustomProfilPicture';
-import { COLORS, FONTSIZE, FONTWEIGHT, SPACE } from '../../constants/GLOBAL';
+import { ProfilStackParams } from '../../../Navigation/ProfilStackNav';
+import CustomProfilPicture from '../../../components/CustomProfilPicture/CustomProfilPicture';
+import { COLORS, FONTSIZE, FONTWEIGHT, SPACE } from '../../../constants/GLOBAL';
 
 interface ProfilScreenProps {}
 
@@ -15,10 +15,10 @@ const ProfilScreen: FunctionComponent<ProfilScreenProps> = ({}) => {
 
   const onEditProfil = () => {
     navigation.navigate('EditProfil');
-    console.warn('Go to Edit Profil');
+    console.log('Go to Edit Profil');
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ alignItems: 'center', justifyContent: 'center' }}>
       <StatusBar style='auto' />
       <Text>Profil</Text>
       <View style={styles.profilPicContainer}>
@@ -39,8 +39,10 @@ const ProfilScreen: FunctionComponent<ProfilScreenProps> = ({}) => {
           rightPosition={60}
         />
       </View>
-      <Text style={styles.profilName}> Name </Text>
-      <Text onPress={onEditProfil}>Edit Profil here</Text>
+      <Text> Name </Text>
+      <Text style={{ color: 'blue' }} onPress={onEditProfil}>
+        Go to Edit Profil
+      </Text>
     </SafeAreaView>
   );
 };
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
   profilPicContainer: {
     alignItems: 'center',
     backgroundColor: 'green',
+    width: '100%',
   },
 
   profilName: {

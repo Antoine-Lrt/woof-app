@@ -1,16 +1,16 @@
 import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { FunctionComponent } from 'react';
-import CustomTextFiled from '../../components/CustomTextFiled/CustomTextFiled';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomTextFiled from '../../../components/CustomTextFiled/CustomTextFiled';
+import CustomButton from '../../../components/CustomButton/CustomButton';
 import { Controller, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { COLORS, FONTFAMILY, FONTSIZE } from '../../constants/GLOBAL';
-import Logo from '../../components/Logo/Logo';
+import { COLORS, FONTFAMILY, FONTSIZE } from '../../../constants/GLOBAL';
+import Logo from '../../../components/Logo/Logo';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RouteParams } from '../../Navigation/RootNavigator';
+import { RouteParams } from '../../../Navigation/RootNavigator';
 
 interface LoginScreenProps {
   email: string;
@@ -41,7 +41,7 @@ const LoginScreen: FunctionComponent = ({}) => {
   const onSignIn = () => {
     clearErrors();
     navigation.navigate('TabBar');
-    console.warn('Create Account');
+    console.log('Create Account');
   };
 
   // NAVIGATION
@@ -50,7 +50,7 @@ const LoginScreen: FunctionComponent = ({}) => {
   const onCreateAccount = () => {
     clearErrors();
     navigation.navigate('Register');
-    console.warn('Go to Login');
+    console.log('Go to Login');
   };
 
   return (
